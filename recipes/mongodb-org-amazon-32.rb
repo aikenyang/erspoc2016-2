@@ -6,4 +6,5 @@ end
 
 yum_package 'mongodb-org' do
 	action :install
+	version '3.2.6-1.amzn1'
 end
