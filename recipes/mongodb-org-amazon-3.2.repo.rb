@@ -1,4 +1,9 @@
-template mongodb-org-amazon-3.2.repo do
+template '/etc/yum.repos.d/mongodb-org-3.2.repo' do
+  source 'mongodb-org-amazon-3.2.repo.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
+end
 
 package 'mongodb-org-3.2.6' do
 	action :install
