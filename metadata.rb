@@ -1,0 +1,6 @@
+name              'ersmongodb'
+maintainer        'Kenneth Yang'
+maintainer_email  'kenneth_yang@trend.com.tw'
+license           'Apache 2.0'
+description       'Installs and configures mongodb for ERS, 2016/5/16'
+version           '0.1.1'
