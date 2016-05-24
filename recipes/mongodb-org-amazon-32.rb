@@ -42,13 +42,13 @@ end
 
 directory "/data/" do
   mode 0755
-  owner 'mongodb'
-  group 'mongodb'
+  owner 'mongod'
+  group 'mongod'
   action :create
 end 
 
 cookbook_file "/etc/mongod.conf" do
   source "mongod.conf"
   mode 0644
-  action :create_if_missing
+  action :create
 end 
