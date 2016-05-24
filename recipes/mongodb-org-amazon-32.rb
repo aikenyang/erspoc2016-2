@@ -39,3 +39,16 @@ yum_package 'mongodb-org' do
 	action :install
 	version '3.2.6-1.amzn1'
 end
+
+directory "/data/" do
+  mode 0755
+  owner 'mongodb'
+  group 'mongodb'
+  action :create
+end 
+
+cookbook_file "/etc/mongod.conf" do
+  source "mongod.conf"
+  mode 0644
+  action :create_if_missing
+end 
