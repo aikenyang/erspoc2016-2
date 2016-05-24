@@ -46,9 +46,3 @@ directory "/data/" do
   group 'mongod'
   action :create
 end 
-
-cookbook_file "/etc/mongod.conf" do
-  source "mongod.conf"
-  mode 0644
-  action :create
-end 
