@@ -42,8 +42,8 @@ end
 
 directory "/data/" do
   mode 0755
-  owner 'mongodb'
-  group 'mongodb'
+  owner 'mongod'
+  group 'mongod'
   action :create
 end 
 
@@ -55,6 +55,8 @@ end
 
 cookbook_file "/data/keyfile" do
   source "keyfile"
+  owner 'mongod'
+  group 'mongod'
   mode 0600
   action :create_if_missing
 end 
