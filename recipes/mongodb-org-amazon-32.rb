@@ -62,7 +62,10 @@ cookbook_file "/data/keyfile" do
 end 
 
 #add ip into sqs
-execute "sent ip to sqs" do
-  command "var=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)"
-  command "aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/erspoc --message-body $var --delay-seconds 10"
+bash "add_ip_to_sqs" do
+  user "root"
+  code <<-EOF
+    var=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)
+    aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/erspoc --message-body $var
+  EOF
 end
