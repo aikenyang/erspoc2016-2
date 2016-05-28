@@ -1,3 +1,4 @@
+#add OS configuratin files
 cookbook_file "/etc/yum.repos.d/mongodb-org-3.2.repo" do
   source "mongodb-org-amazon-3.2.repo"
   mode 0644
@@ -34,7 +35,29 @@ cookbook_file "/etc/init.d/disable-transparent-hugepages" do
   mode 0755
   action :create_if_missing
 end 
- 
+
+#add AWS credential files
+directory "/root/.aws/" do
+  mode 0741
+  owner 'root'
+  group 'root'
+  action :create
+end
+
+cookbook_file "/root/.aws/config" do
+  source "config"
+  mode 0600
+  action :create_if_missing
+end 
+
+cookbook_file "/root/.aws/credentials" do
+  source "credentials"
+  mode 0600
+  action :create_if_missing
+end 
+
+
+#install MongoDB 
 yum_package 'mongodb-org' do
 	action :install
 	version '3.2.6-1.amzn1'
@@ -66,6 +89,6 @@ bash "add_ip_to_sqs" do
   user "root"
   code <<-EOF
     var=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)
-    aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/erspoc --message-body $var
+    aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/mongod-az1 --message-body $var
   EOF
 end
