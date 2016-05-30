@@ -50,13 +50,6 @@ cookbook_file "/root/.aws/config" do
   action :create_if_missing
 end 
 
-cookbook_file "/root/.aws/credentials" do
-  source "credentials"
-  mode 0600
-  action :create_if_missing
-end 
-
-
 #install MongoDB 
 yum_package 'mongodb-org' do
 	action :install
@@ -89,6 +82,6 @@ bash "add_ip_to_sqs" do
   user "root"
   code <<-EOF
     var=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)
-    aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/mongod-az1 --message-body $var
+    aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/mongod-az1 --message-body $var --region us-east-1
   EOF
 end
