@@ -36,7 +36,7 @@ cookbook_file "/etc/init.d/disable-transparent-hugepages" do
   action :create_if_missing
 end 
 
-#add AWS credential files
+#add AWS config file
 directory "/root/.aws/" do
   mode 0741
   owner 'root'
@@ -68,12 +68,3 @@ cookbook_file "/etc/mongod.conf" do
   mode 0644
   action :create
 end 
-
-#add ip into sqs
-bash "add_ip_to_sqs" do
-  user "root"
-  code <<-EOF
-    var=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)
-    aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/595704032741/mongod-az1 --message-body $var --region us-east-1
-  EOF
-end
