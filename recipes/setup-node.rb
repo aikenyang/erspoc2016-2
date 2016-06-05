@@ -68,3 +68,11 @@ cookbook_file "/etc/mongod.conf" do
   mode 0644
   action :create
 end 
+
+#start mongos service
+bash "start_mongod" do
+   user "root"
+   code <<-EOF
+      service mongod start
+   EOF
+end

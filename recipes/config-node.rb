@@ -24,9 +24,9 @@ bash "get_ip_from_sqs" do
 	
 	ip0=$(curl http://169.254.169.254/latest/meta-data/local-ipv4/)
 	host0="$ip0:27017"
-	str=$"cfg = {_id:'RS1', members:[{_id:0, host:'"$host0"'}, {_id:1, host:"$host1"}]}"
-	echo $str > init.js
-	echo 'rs.initiate(cfg)' >> init.js
+	str=$"cfg = {_id:'RS1', members:[{_id:0, host:'"$host0"'}, {_id:1, host:"$host1"}, {_id:2, host:"$host2"}]}"
+	echo $str > /data/init.js
+	echo 'rs.initiate(cfg)' >> /data/init.js
   EOF
 end
 
@@ -35,6 +35,6 @@ end
 bash "init_replicaSet" do
   user "root"
   code <<-EOF
-	mongo admin init.js
+	mongo admin /data/init.js
   EOF
 end
