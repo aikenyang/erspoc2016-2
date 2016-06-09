@@ -36,6 +36,7 @@ bash "gen_init.js" do
 	  
 	  str=$"cfg = {_id:'RS1', members:[{_id:0, host:'"$host0"'}, {_id:1, host:"$host1"}, {_id:2, host:"$host2"}]}"
 	  echo $str > /data/init.js
+	  echo 'rs.initiate(cfg)' >> /data/init.js
 	  
 	  break
 	 else
