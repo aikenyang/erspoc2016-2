@@ -1,5 +1,5 @@
-region = node["opsworks"]["instance"]["region"]
-hostname = node["opsworks"]["instance"]["hostname"]
+$region = node["opsworks"]["instance"]["region"]
+$hostname = node["opsworks"]["instance"]["hostname"]
 #environment_type = node["deploy"]["arq"]["environment_variables"]["environment_type"]
 
 #file '/tmp/file' do
@@ -13,6 +13,6 @@ hostname = node["opsworks"]["instance"]["hostname"]
  bash "echo_hostname" do
    user "root"
    code <<-EOF
-      echo #{region}
+      echo $region
    EOF
  end
