@@ -1,18 +1,7 @@
-$region = node["opsworks"]["instance"]["region"]
-$hostname = node["opsworks"]["instance"]["hostname"]
-#environment_type = node["deploy"]["arq"]["environment_variables"]["environment_type"]
+require 'aws-sdk'
 
-#file '/tmp/file' do
-  #content 'region=#{region}; hostname=#{hostname}; environment_type=#{environment_type}'
-  content 'region=#{region}; hostname=#{hostname}}'
-#  mode '0755'
-#  owner 'root'
-#  grout 'root'
-#end
+region = node["opsworks"]["instance"]["region"]
+hostname = node["opsworks"]["instance"]["hostname"]
 
- bash "echo_hostname" do
-   user "root"
-   code <<-EOF
-      echo $region
-   EOF
- end
+Chef::Log.info("deploy #{region}")
+Chef::Log.info("deploy #{hostname}")
