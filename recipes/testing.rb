@@ -6,6 +6,7 @@
 #Chef::Log.info("deploy #{region}")
 #Chef::Log.info("deploy #{hostname}")
 
+Chef::Log.info("******Creating a data directory.******")
 
 bash "echo something" do
    code <<-EOF
