@@ -11,5 +11,6 @@ Chef::Log.info("******Creating a data directory.******")
 bash "echo something" do
    code <<-EOF
      echo "I am a #{region}"
+	 touch /tmp/#{region}.txt
    EOF
 end
