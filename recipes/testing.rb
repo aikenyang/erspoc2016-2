@@ -1,6 +1,6 @@
 #require 'aws-sdk'
 
-#region = node["opsworks"]["instance"]["region"]
+region = node["opsworks"]["instance"]["region"]
 #hostname = node["opsworks"]["instance"]["hostname"]
 
 #Chef::Log.info("deploy #{region}")
