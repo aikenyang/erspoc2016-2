@@ -1,9 +1,15 @@
-#require 'aws-sdk'
+#check hostname number if primary
 
-region = node["opsworks"]["instance"]["region"]
+#hostname format: ers-dev-instancename001-timstamp
 #hostname = node["opsworks"]["instance"]["hostname"]
+region = node["opsworks"]["instance"]["region"]
+Chef::Log.info("##### the hostname is #{region} ######")
 
-#Chef::Log.info("deploy #{region}")
+id = region.split(",")
+id = #{id[2]}
+
+Chef::Log.info("##### the hostname is #{id} ######")
+
 #Chef::Log.info("deploy #{hostname}")
 
 Chef::Log.info("******Creating a data directory.******")
